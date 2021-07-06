@@ -2,15 +2,14 @@
 var surnamesID = document.getElementById("surnames");
 var positionID = document.getElementById("position");
 var surnames = ["Bianchi", "Neri", "Rossi", "Verdi", "Gialli"];
-var surnamesList = "";
+var surnamesList = "<li>";
 var position;
 
 // Input cognome
-var userSurname = prompt("Inserisci il tuo cognome");
-while (!userSurname || !allLetter(userSurname)) {
-    alert("Formato non valido");
-    var userSurname = prompt("Inserisci il tuo cognome");
-}
+var userSurname;
+do {
+    userSurname = prompt("Inserisci il tuo cognome");
+} while (!allLetter(userSurname));
 
 // Inserimento cognome
 userSurname = capitalize(userSurname.trim());
@@ -20,12 +19,9 @@ surnames.push(userSurname);
 surnames.sort()
 
 // Preparazione alla stampa
-for (var i = 0; i < surnames.length; i++) {
-    if (surnames[i] == userSurname) {
-        position = i + 1;
-    }
-    surnamesList += "<li>" + surnames[i] + "</li>";
-}
+surnamesList += surnames.join("</li><li>")
+surnamesList += "</li>";
+position = (surnames.indexOf(userSurname)) + 1;
 positionMessage = "Il tuo cognome è in " + position + "° posizione";
 
 // Stampa in console e in pagina
@@ -35,15 +31,20 @@ surnamesID.innerHTML = surnamesList;
 positionID.innerHTML = positionMessage;
 
 // Metodi
+/* Metodo per controllare se nella stringa
+siano presenti solo lettere e spazi */
 function allLetter(inputTxt) {
     var letters = /^[a-zA-Z\s]+$/;
     if (inputTxt.match(letters)) {
         return true;
     }
     else {
+        alert("Formato non valido");
         return false;
     }
 }
+/* Metodo per rendere maiuscole le iniziali di
+tutte le parole che compongono il cognome */
 function capitalize(str) {
     var splitStr = str.toLowerCase().split(' ');
     for (var i = 0; i < splitStr.length; i++) {
