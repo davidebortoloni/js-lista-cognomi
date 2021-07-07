@@ -9,6 +9,9 @@ var position;
 var userSurname;
 do {
     userSurname = prompt("Inserisci il tuo cognome");
+    if (userSurname == null || userSurname.trim() === "") {
+        userSurname = "";
+    }
 } while (!allLetter(userSurname));
 
 // Inserimento cognome
@@ -39,7 +42,7 @@ function allLetter(inputTxt) {
         return true;
     }
     else {
-        alert("Formato non valido");
+        alert("Inserisci un cognome valido (senza numeri e caratteri speciali)");
         return false;
     }
 }
