@@ -2,8 +2,6 @@
 var surnamesID = document.getElementById("surnames");
 var positionID = document.getElementById("position");
 var surnames = ["Bianchi", "Neri", "Rossi", "Verdi", "Gialli"];
-var surnamesList = "<li>";
-var position;
 
 // Input cognome
 var userSurname;
@@ -21,9 +19,13 @@ surnames.push(userSurname);
 // Ordinamento lista
 surnames.sort()
 
-// Preparazione alla stampa
+// PREPARAZIONE ALLA STAMPA
+// Messaggio con la lista
+var surnamesList = "<li>";
 surnamesList += surnames.join("</li><li>")
 surnamesList += "</li>";
+// Messaggio con la posizione
+var position;
 position = (surnames.indexOf(userSurname)) + 1;
 positionMessage = "Il tuo cognome è in " + position + "° posizione";
 
@@ -33,7 +35,7 @@ console.log(positionMessage);
 surnamesID.innerHTML = surnamesList;
 positionID.innerHTML = positionMessage;
 
-// Metodi
+// METODI
 /* Metodo per controllare se nella stringa
 siano presenti solo lettere e spazi */
 function allLetter(inputTxt) {
